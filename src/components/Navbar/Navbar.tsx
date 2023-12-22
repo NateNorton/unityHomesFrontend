@@ -1,3 +1,4 @@
+import './navbar.css';
 import { AppBar, Avatar, Box, Button, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useState } from 'react';

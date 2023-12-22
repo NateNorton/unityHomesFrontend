@@ -1,11 +1,11 @@
 import './App.css';
-// import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar';
 import ParallaxBanner from './components/ParallaxBanner/ParallaxBanner';
 
 function App() {
   return (
     <>
-      {/* <Navbar userLoggedIn={false} /> */}
+      <Navbar userLoggedIn={false} />
       <ParallaxBanner />
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum porro quisquam vitae, nihil, aspernatur ullam
