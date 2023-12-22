@@ -1,0 +1,34 @@
+.parallax-banner-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  position: relative;
+  place-items: center;
+}
+
+.parallax-title {
+  font-weight: bold;
+  color: white;
+  position: relative;
+  padding-bottom: 20%;
+  z-index: 10;
+}
+
+.banner-full-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url(../../assets//full-image-final.png);
+  background-position: bottom;
+  background-size: cover;
+}
+
+.banner-bottom-image {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  background-image: url(../../assets//front-image-final.png);
+  background-position: bottom;
+  background-size: cover;
+}
