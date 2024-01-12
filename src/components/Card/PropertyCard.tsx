@@ -1,6 +1,6 @@
 import { Card, Carousel, Col, Container, Image, Row } from 'react-bootstrap';
 
-type Image = {
+export type Image = {
   URL: string;
   description: string;
 };
@@ -14,12 +14,12 @@ const PropertyCard = ({ title, description, images }: PropertyCardProps) => {
   return (
     <Card className="text-center">
       <Container>
-        <Row noGutters>
+        <Row>
           <Col md={6}>
             <Carousel>
               {images.map((image) => (
                 <Carousel.Item key={image.URL}>
-                  <Image src={image.URL} rounded />
+                  <Image src={'https://picsum.photos/500/200'} rounded />
                   <Carousel.Caption>
                     <p>{image.description}</p>
                   </Carousel.Caption>

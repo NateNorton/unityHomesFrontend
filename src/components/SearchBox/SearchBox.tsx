@@ -1,16 +1,10 @@
-import { useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
-import { fetchProperties } from '../../api/property.service';
+interface ISearchBoxProps {
+  setSearchTerm: (_term: string) => void;
+  handleSubmit?: () => void;
+}
 
-const SearchBox = () => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
-
-  const submitSearch = async () => {
-    const properties = await fetchProperties(searchTerm);
-    console.log(properties);
-    searchTerm && setSearchTerm('');
-  };
-
+const SearchBox = ({ setSearchTerm, handleSubmit }: ISearchBoxProps) => {
   const handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
@@ -23,7 +17,7 @@ const SearchBox = () => {
           <Form.Group>
             <Form.Label>Search for properties</Form.Label>
             <Form.Control type="text" placeholder="Enter postcode or place" onChange={handleSearchTermChange} />
-            <Button variant="Primary" onClick={submitSearch}>
+            <Button variant="primary" onClick={handleSubmit}>
               submit
             </Button>
           </Form.Group>
