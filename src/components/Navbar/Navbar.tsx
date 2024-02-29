@@ -1,40 +1,32 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-
-const NavbarLinks = [
-  {
-    name: 'Home',
-    href: '/',
-  },
-  {
-    name: 'About',
-    href: '/about',
-  },
-  {
-    name: 'Contact',
-    href: '/contact',
-  },
+const navigation = [
+  { name: 'Home', href: '#' },
+  { name: 'Properties', href: '#' },
+  { name: 'Search', href: '#' },
 ];
 
-const MainNavbar = () => {
+export const MainNavbar = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            {NavbarLinks.map((link) => (
-              <Nav.Link href={link.href} key={link.href}>
-                {link.name}
-              </Nav.Link>
-            ))}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <nav className="absolute inset-x-0 top-0 z-50 bg-mutedSage">
+      <div className="flex items-center justify-between p-6 lg:pd-8 max-h-20">
+        {/* logo container */}
+        <div>
+          <h2 className="text-teracottaDark font-bold text-xl lg:text-3xl">Unity</h2>
+        </div>
+
+        {/* link container */}
+        <div className="flex space-x-2 lg:space-x-6">
+          {navigation.map((item, index) => (
+            <p key={index} className="font-bold text-darkest">
+              {item.name}
+            </p>
+          ))}
+        </div>
+
+        {/* login container */}
+        <div>
+          <p className="font-bold text-teracottaDark">Login</p>
+        </div>
+      </div>
+    </nav>
   );
 };
-
-export default MainNavbar;
