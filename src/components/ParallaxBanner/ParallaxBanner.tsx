@@ -23,6 +23,12 @@ const ParallaxBanner = () => {
 
       <motion.div style={{ y: backgroundY }} className="banner-full-image" />
       <div className="banner-bottom-image" />
+
+      {/* home page search box */}
+      <div className="flex flex-col z-40 bg-sageLight">
+        <h2>Find your perfect Home</h2>
+        <input type="text" />
+      </div>
     </div>
   );
 };

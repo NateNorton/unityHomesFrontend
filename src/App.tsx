@@ -1,5 +1,5 @@
 import './App.css';
-import { MainNavbar } from './components/Navbar/Navbar';
+// import { MainNavbar } from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 // import MainNavbar from './components/Navbar/Navbar';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -24,9 +24,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <nav>
-        <MainNavbar />
-      </nav>
       <main>
         <RouterProvider router={router} />
       </main>

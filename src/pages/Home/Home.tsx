@@ -1,4 +1,5 @@
 // import { useDispatch } from 'react-redux';
+import { MainNavbar } from '../../components/Navbar/Navbar';
 import ParallaxBanner from '../../components/ParallaxBanner/ParallaxBanner';
 // import SearchBox from '../../components/SearchBox/SearchBox';
 // import { AppDispatch } from '../../redux/store';
@@ -20,6 +21,7 @@ const Home = () => {
 
   return (
     <div className="h-full w-full flex flex-col">
+      <MainNavbar />
       <ParallaxBanner />
     </div>
     // <Container fluid>

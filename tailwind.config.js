@@ -4,6 +4,7 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     colors: {
+      transparent: 'transparent',
       antiqueWhite: '#F4F1DE',
       teracotta: '#E07A5F',
       deepSlate: '#3D405B',
