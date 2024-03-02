@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { homesApi } from './api/homesApi';
 import searchParametersReducer from './search/property.reducer';
+import { authApi } from './api/authentication';
 
 export const store = configureStore({
   reducer: {
     searchParameters: searchParametersReducer,
     [homesApi.reducerPath]: homesApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(homesApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(homesApi.middleware).prepend(authApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
