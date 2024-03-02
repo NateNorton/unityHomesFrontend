@@ -45,6 +45,7 @@ export const RegisterForm = () => {
         <form onSubmit={handleSubmit}>
           {/* form container */}
           <div className="flex flex-col gap-y-4 items-center justify-center">
+            <h2 className="text-3xl font-bold text-darkest">Register</h2>
             {/* Username */}
             <TextInput
               label="User123"
@@ -126,7 +127,7 @@ export const RegisterForm = () => {
             {/* submit button */}
             <div className="pt-4">
               <Button type={'submit'} disabled={isSubmitting} version="contain" isPrimary={true}>
-                Submit
+                Register
               </Button>
             </div>
           </div>

@@ -1,7 +1,10 @@
+import { LoginForm } from '../../forms/authentication/LoginForm';
+import { AuthPageLayout } from '../../layouts/authPageLayout';
+
 export const LoginPage = () => {
   return (
-    <div>
-      <h1>Login</h1>
-    </div>
+    <AuthPageLayout>
+      <LoginForm />
+    </AuthPageLayout>
   );
 };

@@ -16,7 +16,7 @@ export const TextInput = ({
 }: ITextInputProps) => {
   return (
     <div className="flex flex-col min-w-60 max-w-60">
-      {label && <label className="text-sm mb-1">{label}</label>}
+      {label && <label className="text-sm mb-1 text-darkest">{label}</label>}
       <div className={`min-h-[48px] flex items-center ${iconPosition === 'right' ? 'flex-row-reverse' : ''}`}>
         {icon && <span className="p-2">{icon}</span>}
         <input

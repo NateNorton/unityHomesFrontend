@@ -2,20 +2,33 @@ import './App.css';
 import Home from './pages/Home/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LoginPage } from './pages/LoginAndRegister/LoginPage';
-import { RegisterPage } from './pages/LoginAndRegister/Register';
+import { RegisterPage } from './pages/LoginAndRegister/RegisterPage';
+import { MainLayout } from './layouts/mainLayout';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: (
+      <MainLayout>
+        <Home />
+      </MainLayout>
+    ),
   },
   {
     path: '/login',
-    element: <LoginPage />,
+    element: (
+      <MainLayout>
+        <LoginPage />,
+      </MainLayout>
+    ),
   },
   {
     path: '/register',
-    element: <RegisterPage />,
+    element: (
+      <MainLayout>
+        <RegisterPage />
+      </MainLayout>
+    ),
   },
   // {
   //   path: '/properties',

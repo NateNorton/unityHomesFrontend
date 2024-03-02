@@ -20,7 +20,7 @@ export const MainNavbar = () => {
         {/* link container */}
         <div className="flex space-x-2 lg:space-x-6">
           {navigation.map((item, index) => (
-            <Button key={index} type="text" isPrimary={true} onClick={() => navigate(item.href)}>
+            <Button key={index} version="text" isPrimary={true} onClick={() => navigate(item.href)}>
               {item.name}
             </Button>
           ))}
