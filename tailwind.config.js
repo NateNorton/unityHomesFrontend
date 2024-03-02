@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 /** @type {import('tailwindcss').Config} */
+
+import typography from '@tailwindcss/typography';
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -22,7 +24,48 @@ export default {
       sageLight: '#A6C9B8',
       antiqueWhiteComp: '#DEE1F4',
     },
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#181816',
+            h1: {
+              fontFamily: ['Bad Script', 'cursive'],
+            },
+            h2: {
+              fontFamily: ['Lato', 'sans-serif'],
+            },
+            h3: {
+              fontFamily: ['Lato', 'sans-serif'],
+            },
+            h4: {
+              fontFamily: ['Lato', 'sans-serif'],
+            },
+            h5: {
+              fontFamily: ['Lato', 'sans-serif'],
+            },
+            h6: {
+              fontFamily: ['Lato', 'sans-serif'],
+            },
+            p: {
+              fontFamily: ['Roboto', 'sans-serif'],
+            },
+            a: {
+              fontFamily: ['Roboto', 'sans-serif'],
+            },
+            ul: {
+              fontFamily: ['Roboto', 'sans-serif'],
+            },
+            ol: {
+              fontFamily: ['Roboto', 'sans-serif'],
+            },
+            blockquote: {
+              fontFamily: ['Roboto', 'sans-serif'],
+            },
+          },
+        },
+      },
+    },
   },
-  plugins: [],
+  plugins: [typography],
 };

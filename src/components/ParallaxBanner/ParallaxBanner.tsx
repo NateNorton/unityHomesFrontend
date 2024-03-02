@@ -3,6 +3,8 @@
 import './parallax-banner.css';
 import { useRef } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
+import { TextInput } from '../inputs/textInput/TextInput';
+import ManageSearchOutlinedIcon from '@mui/icons-material/ManageSearchOutlined';
 
 const ParallaxBanner = () => {
   const ref = useRef(null);
@@ -16,8 +18,8 @@ const ParallaxBanner = () => {
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '200%']);
 
   return (
-    <div className="parallax-banner-container" ref={ref}>
-      <motion.h1 style={{ y: textY }} className="parallax-title">
+    <div className="parallax-banner-container flex flex-col" ref={ref}>
+      <motion.h1 style={{ y: textY }} className="text-lightest z-10 relative font-bold">
         Unity Homes
       </motion.h1>
 
@@ -25,9 +27,9 @@ const ParallaxBanner = () => {
       <div className="banner-bottom-image" />
 
       {/* home page search box */}
-      <div className="flex flex-col z-40 bg-sageLight">
-        <h2>Find your perfect Home</h2>
-        <input type="text" />
+      <div className="flex flex-col z-40 bg-sageLight space-y-5 p-3 lg:p-6 rounded w-1/4 items-center justify-center pt-10 pb-10">
+        <h2 className="">Find your perfect Home</h2>
+        <TextInput placeholder="AB12 3CD" icon={<ManageSearchOutlinedIcon />} iconPosition="right" />
       </div>
     </div>
   );

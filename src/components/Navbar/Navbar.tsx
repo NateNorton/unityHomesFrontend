@@ -10,7 +10,7 @@ const navigation = [
 export const MainNavbar = () => {
   const navigate = useNavigate();
   return (
-    <nav className="absolute inset-x-0 top-0 z-50 bg-mutedSage">
+    <nav className="absolute inset-x-0 top-0 z-50 bg-lightest">
       <div className="flex items-center justify-between p-6 lg:pd-8 max-h-20">
         {/* logo container */}
         <div>

@@ -1,15 +1,21 @@
 import './App.css';
-// import { MainNavbar } from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
-// import MainNavbar from './components/Navbar/Navbar';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import Properties from './pages/Properties/Properties';
-// import { AddProperty } from './pages/AddProperty/AddProperty';
+import { LoginPage } from './pages/LoginAndRegister/LoginPage';
+import { RegisterPage } from './pages/LoginAndRegister/Register';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
   },
   // {
   //   path: '/properties',
