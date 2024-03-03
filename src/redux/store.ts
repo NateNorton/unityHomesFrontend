@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { homesApi } from './api/homesApi';
-import searchParametersReducer from './search/property.reducer';
+import propertyReducer from './properties/property.reducer';
 import { authApi } from './api/authentication';
 
 export const store = configureStore({
   reducer: {
-    searchParameters: searchParametersReducer,
+    properties: propertyReducer,
     [homesApi.reducerPath]: homesApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
   },

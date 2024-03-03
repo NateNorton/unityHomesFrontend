@@ -7,7 +7,7 @@ export const homesApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5177/api/' }),
   endpoints: (builder) => ({
     getPropertiesFromLocation: builder.query<IProperty[], string>({
-      query: (locaton) => `properties?location=${locaton}`,
+      query: (location) => `properties?location=${location}`,
     }),
 
     getPropertyTypes: builder.query<PropertyType[], void>({

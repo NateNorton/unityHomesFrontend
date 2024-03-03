@@ -20,7 +20,7 @@ export const TextInput = ({
       <div className={`min-h-[48px] flex items-center ${iconPosition === 'right' ? 'flex-row-reverse' : ''}`}>
         {icon && <span className="p-2">{icon}</span>}
         <input
-          className={`border p-2 rounded focus:outline-none bg-lightest w-full ${typeof errorMessage === 'undefined' ? 'border-slateDark' : 'border-teracotta'}`}
+          className={`border p-2 rounded focus:outline-none bg-lightest w-full ${typeof errorMessage === 'undefined' ? 'border-slateDark' : 'border-teracotta'} text-darkest`}
           {...props}
           disabled={state === 'disabled'}
         />

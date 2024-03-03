@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LoginPage } from './pages/LoginAndRegister/LoginPage';
 import { RegisterPage } from './pages/LoginAndRegister/RegisterPage';
 import { MainLayout } from './layouts/mainLayout';
+import { PropertiesPage } from './pages/Properties/PropertiesPage';
 
 const router = createBrowserRouter([
   {
@@ -30,10 +31,10 @@ const router = createBrowserRouter([
       </MainLayout>
     ),
   },
-  // {
-  //   path: '/properties',
-  //   element: <Properties />,
-  // },
+  {
+    path: '/properties',
+    element: <PropertiesPage />,
+  },
   // {
   //   path: '/addProperty',
   //   element: <AddProperty />,

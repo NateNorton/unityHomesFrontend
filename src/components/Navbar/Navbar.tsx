@@ -14,7 +14,7 @@ export const MainNavbar = () => {
     navigate(href);
   };
   return (
-    <nav className="absolute inset-x-0 top-0 z-50 bg-lightest">
+    <nav className="inset-x-0 top-0 z-50 bg-lightest sticky">
       <div className="flex items-center justify-between p-6 lg:pd-8 max-h-20">
         {/* logo container */}
         <a href="/" className="hover:cursor-pointer">

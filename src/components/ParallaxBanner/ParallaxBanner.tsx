@@ -1,12 +1,18 @@
 // https://www.youtube.com/watch?v=29UWA-GdA7k&ab_channel=TomIsLoading
 // used as guidance on how to create parallax scrolling
 import './parallax-banner.css';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { TextInput } from '../inputs/textInput/TextInput';
 import ManageSearchOutlinedIcon from '@mui/icons-material/ManageSearchOutlined';
 
-const ParallaxBanner = () => {
+interface parallaxBannerProps {
+  onSubmit: (_term: string) => void;
+}
+
+const ParallaxBanner: React.FC<parallaxBannerProps> = ({ onSubmit }) => {
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
   const ref = useRef(null);
   // get values to show progress of scroll - 0 to 1
   const { scrollYProgress } = useScroll({
@@ -16,6 +22,16 @@ const ParallaxBanner = () => {
   // transform scroll value into usable values
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
   const textY = useTransform(scrollYProgress, [0, 1], ['0%', '200%']);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmitSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onSubmit(searchTerm);
+    }
+  };
 
   return (
     <div className="parallax-banner-container flex flex-col" ref={ref}>
@@ -29,7 +45,14 @@ const ParallaxBanner = () => {
       {/* home page search box */}
       <div className="flex flex-col z-40 bg-sageLight space-y-5 p-3 lg:p-6 rounded w-1/4 items-center justify-center pt-10 pb-10">
         <h2 className="">Find your perfect Home</h2>
-        <TextInput placeholder="AB12 3CD" icon={<ManageSearchOutlinedIcon />} iconPosition="right" />
+        <TextInput
+          placeholder="AB12 3CD"
+          icon={<ManageSearchOutlinedIcon />}
+          iconPosition="right"
+          onChange={handleSearchChange}
+          onKeyDown={handleSubmitSearch}
+          value={searchTerm}
+        />
       </div>
     </div>
   );
