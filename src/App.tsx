@@ -5,6 +5,8 @@ import { LoginPage } from './pages/LoginAndRegister/LoginPage';
 import { RegisterPage } from './pages/LoginAndRegister/RegisterPage';
 import { MainLayout } from './layouts/mainLayout';
 import { PropertiesPage } from './pages/Properties/PropertiesPage';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 const router = createBrowserRouter([
   {
@@ -43,11 +45,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <main>
         <RouterProvider router={router} />
       </main>
-    </>
+    </Provider>
   );
 }
 

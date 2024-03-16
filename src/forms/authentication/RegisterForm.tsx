@@ -2,43 +2,59 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { TextInput } from '../../components/inputs/textInput/TextInput';
 import { Button } from '../../components/inputs/Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import { registerUser } from '../../redux/features/auth/authAction';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const validationSchema = yup.object().shape({
-  Username: yup
+  userName: yup
     .string()
     .matches(/^[a-zA-Z0-9_]*$/, 'Username can only contain letters, numbers, and underscores')
     .min(5, 'Username must be at least 5 characters')
     .max(50, 'Username must be less than 50 characters')
     .required('Username is required'),
-  Email: yup.string().email('Invalid email').required('Email is required'),
-  Password: yup
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup
     .string()
     .matches(/^(?=.*[0-9])(?=.*[!@#$%^&*])/, 'Password must contain at least one number and one special character')
     .min(8, 'Password must be at least 8 characters')
     .required('Password is required'),
-  ConfirmPassword: yup.string().oneOf([yup.ref('Password')], 'Passwords must match'),
-  FirstName: yup.string().required('First Name is required'),
-  LastName: yup.string().required('Last Name is required'),
+  confirmPassword: yup.string().oneOf([yup.ref('Password')], 'Passwords must match'),
+  firstName: yup.string().required('First Name is required'),
+  lastName: yup.string().required('Last Name is required'),
 });
 
 export const RegisterForm = () => {
+  const { loading, error, success } = useSelector((state: RootState) => state.auth);
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) navigate('/login');
+  }, [success, navigate]);
   return (
     <Formik
       initialValues={{
-        Username: '',
-        Email: '',
-        Password: '',
-        ConfirmPassword: '',
-        FirstName: '',
-        LastName: '',
+        userName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        firstName: '',
+        lastName: '',
       }}
       validationSchema={validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         setSubmitting(true);
         // TODO: actually submit the form with RTK query
-
-        resetForm();
-        setSubmitting(false);
+        dispatch(registerUser(values));
+        if (!error) {
+          resetForm();
+          if (!loading) {
+            setSubmitting(false);
+          }
+        }
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
@@ -51,12 +67,12 @@ export const RegisterForm = () => {
               label="User123"
               type="text"
               name="Username"
-              value={values.Username}
+              value={values.userName}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Username"
-              state={touched.Username && errors.Username ? 'error' : 'normal'}
-              errorMessage={touched.Username && errors.Username ? errors.Username : undefined}
+              state={touched.userName && errors.userName ? 'error' : 'normal'}
+              errorMessage={touched.userName && errors.userName ? errors.userName : undefined}
             />
 
             {/* Email */}
@@ -64,12 +80,12 @@ export const RegisterForm = () => {
               label="Email"
               type="text"
               name="Email"
-              value={values.Email}
+              value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Email"
-              state={touched.Email && errors.Email ? 'error' : 'normal'}
-              errorMessage={touched.Email && errors.Email ? errors.Email : undefined}
+              state={touched.email && errors.email ? 'error' : 'normal'}
+              errorMessage={touched.email && errors.email ? errors.email : undefined}
             />
 
             {/* Password */}
@@ -77,12 +93,12 @@ export const RegisterForm = () => {
               label="Password"
               type="password"
               name="Password"
-              value={values.Password}
+              value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Password"
-              state={touched.Password && errors.Password ? 'error' : 'normal'}
-              errorMessage={touched.Password && errors.Password ? errors.Password : undefined}
+              state={touched.password && errors.password ? 'error' : 'normal'}
+              errorMessage={touched.password && errors.password ? errors.password : undefined}
             />
 
             {/* Confirm Password */}
@@ -90,12 +106,12 @@ export const RegisterForm = () => {
               label="Confirm Password"
               type="password"
               name="ConfirmPassword"
-              value={values.ConfirmPassword}
+              value={values.confirmPassword}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Confirm Password"
-              state={touched.ConfirmPassword && errors.ConfirmPassword ? 'error' : 'normal'}
-              errorMessage={touched.ConfirmPassword && errors.ConfirmPassword ? errors.ConfirmPassword : undefined}
+              state={touched.confirmPassword && errors.confirmPassword ? 'error' : 'normal'}
+              errorMessage={touched.confirmPassword && errors.confirmPassword ? errors.confirmPassword : undefined}
             />
 
             {/* First Name */}
@@ -103,12 +119,12 @@ export const RegisterForm = () => {
               label="First Name"
               type="text"
               name="FirstName"
-              value={values.FirstName}
+              value={values.firstName}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="First Name"
-              state={touched.FirstName && errors.FirstName ? 'error' : 'normal'}
-              errorMessage={touched.FirstName && errors.FirstName ? errors.FirstName : undefined}
+              state={touched.firstName && errors.firstName ? 'error' : 'normal'}
+              errorMessage={touched.firstName && errors.firstName ? errors.firstName : undefined}
             />
 
             {/* Last Name */}
@@ -116,12 +132,12 @@ export const RegisterForm = () => {
               label="Last Name"
               type="text"
               name="LastName"
-              value={values.LastName}
+              value={values.lastName}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Last Name"
-              state={touched.LastName && errors.LastName ? 'error' : 'normal'}
-              errorMessage={touched.LastName && errors.LastName ? errors.LastName : undefined}
+              state={touched.lastName && errors.lastName ? 'error' : 'normal'}
+              errorMessage={touched.lastName && errors.lastName ? errors.lastName : undefined}
             />
 
             {/* submit button */}
