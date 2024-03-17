@@ -2,7 +2,7 @@
 // used to help create frontend authentication
 
 import { type ActionReducerMapBuilder, type PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { registerUser } from './authAction';
+import { registerUser, userLogin } from './authAction';
 import { getAuthToken } from '../../../utils/localStorage';
 import { RegisterType } from '../../../types/auth/request.type';
 
@@ -15,6 +15,7 @@ const initialState = {
   userToken: authToken,
   error: null as string | null,
   success: false,
+  username: '',
 };
 
 const authSlice = createSlice({
@@ -32,6 +33,22 @@ const authSlice = createSlice({
       state.success = true;
     });
     builder.addCase(registerUser.rejected, (state, action: PayloadAction<string | undefined>) => {
+      state.loading = false;
+      state.error = action.payload || 'An unexpected error occured';
+    });
+
+    // User login
+    builder.addCase(userLogin.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(userLogin.fulfilled, (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.userToken = action.payload;
+      state.success = true;
+    });
+
+    builder.addCase(userLogin.rejected, (state, action: PayloadAction<string | undefined>) => {
       state.loading = false;
       state.error = action.payload || 'An unexpected error occured';
     });

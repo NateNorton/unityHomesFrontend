@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../inputs/Button/Button';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -9,6 +11,7 @@ const navigation = [
 
 export const MainNavbar = () => {
   const navigate = useNavigate();
+  const isLoggedIn = useSelector((state: RootState) => state.auth.userToken !== null);
 
   const handleNavigation = (href: string) => {
     navigate(href);
@@ -30,11 +33,17 @@ export const MainNavbar = () => {
           ))}
         </div>
 
-        {/* login container */}
+        {/* login / logout container */}
         <div>
-          <a href="/login" className="font-bold text-teracottaDark hover:text-teracottaComp">
-            Login
-          </a>
+          {isLoggedIn ? (
+            <Button version="text" isPrimary={true} onClick={() => console.log('logout')}>
+              Logout
+            </Button>
+          ) : (
+            <a href="/login" className="font-bold text-teracottaDark hover:text-teracottaComp">
+              Login
+            </a>
+          )}
         </div>
       </div>
     </nav>

@@ -7,42 +7,53 @@ export const registerUser = createAsyncThunk<RegisterType, RegisterType, { rejec
   'auth/register',
   async (User, { rejectWithValue }) => {
     try {
+      console.log('in try');
       const config = {
         headers: {
           'Content-Type': 'application/json',
         },
       };
-      const response = await axios.post<RegisterType>(`${process.env.API_BASE_URL}/api/Auth/register`, User, config);
+      const response = await axios.post<RegisterType>(
+        `${import.meta.env.VITE_API_BASE_URL}/api/Auth/register`,
+        User,
+        config,
+      );
+      console.log(response.data);
+      console.log(response.status);
       return response.data;
     } catch (error) {
       if (isAxiosError(error)) {
         const errorMessage = error.response?.data?.message || error.message;
         return rejectWithValue(errorMessage);
       }
-      return rejectWithValue('An unknown error occurred'); // Handle non-Axios errors
+      console.log('error', error);
+      return rejectWithValue('An unknown error occurred');
     }
   },
 );
 
-export const userLogin = createAsyncThunk('auth/login', async (User: LoginType, { rejectWithValue }) => {
-  try {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+export const userLogin = createAsyncThunk<string, LoginType, { rejectValue: string }>(
+  'auth/login',
+  async (User: LoginType, { rejectWithValue }) => {
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
 
-    const { data } = await axios.post(`${process.env.API_BASE_URL}/api/Auth/login`, User, config);
+      const { data } = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/Auth/login`, User, config);
 
-    setAuthToken(data.token);
-    return data;
-  } catch (error) {
-    if (isAxiosError(error)) {
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-      } else {
-        return rejectWithValue(error.message);
+      setAuthToken(data.token);
+      return data;
+    } catch (error) {
+      if (isAxiosError(error)) {
+        if (isAxiosError(error)) {
+          const errorMessage = error.response?.data?.message || error.message;
+          return rejectWithValue(errorMessage);
+        }
+        return rejectWithValue('An unknown error occurred');
       }
     }
-  }
-});
+  },
+);
