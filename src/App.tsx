@@ -4,10 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LoginPage } from './pages/LoginAndRegister/LoginPage';
 import { RegisterPage } from './pages/LoginAndRegister/RegisterPage';
 import { MainLayout } from './layouts/mainLayout';
-// import { PropertiesPage } from './pages/Properties/PropertiesPage';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { PropertyDetailsPage } from './pages/Properties/PropertyDetailsPage';
+import { HubLayout } from './layouts/HubLayout';
+import { SettingsPage } from './pages/Settings/SettingPage';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
       <MainLayout>
         <PropertyDetailsPage />
       </MainLayout>
+    ),
+  },
+  {
+    path: '/hub/settings',
+    element: (
+      <HubLayout>
+        <SettingsPage />
+      </HubLayout>
     ),
   },
 ]);

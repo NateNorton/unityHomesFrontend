@@ -19,7 +19,7 @@ export default {
       slateComp: '#5B583D',
       slateDark: '#2A2C3F',
       slateLight: '#77798C',
-      sageComp: '#5B583D',
+      sageComp: '#B28199',
       sageDark: '#5A7C6B',
       sageLight: '#A6C9B8',
       antiqueWhiteComp: '#DEE1F4',
