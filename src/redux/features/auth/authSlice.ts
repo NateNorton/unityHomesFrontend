@@ -3,7 +3,7 @@
 
 import { type ActionReducerMapBuilder, type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { registerUser, userLogin } from './authAction';
-import { getAuthToken } from '../../../utils/localStorage';
+import { getAuthToken, removeAuthToken } from '../../../utils/localStorage';
 import { RegisterType } from '../../../types/auth/request.type';
 
 const authToken = getAuthToken() ?? null;
@@ -21,7 +21,15 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    logoutUser: (state) => {
+      state.userToken = null;
+      state.userInfo = null;
+      state.success = false;
+      state.error = null;
+      removeAuthToken();
+    },
+  },
   extraReducers: (builder: ActionReducerMapBuilder<typeof initialState>) => {
     builder.addCase(registerUser.pending, (state) => {
       state.loading = true;
@@ -55,4 +63,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { logoutUser } = authSlice.actions;
 export default authSlice.reducer;

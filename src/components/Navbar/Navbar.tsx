@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../inputs/Button/Button';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import { logoutUser } from '../../redux/features/auth/authSlice';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -16,6 +17,13 @@ export const MainNavbar = () => {
   const handleNavigation = (href: string) => {
     navigate(href);
   };
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   return (
     <nav className="inset-x-0 top-0 z-50 bg-lightest sticky">
       <div className="flex items-center justify-between p-6 lg:pd-8 max-h-20">
@@ -36,7 +44,7 @@ export const MainNavbar = () => {
         {/* login / logout container */}
         <div>
           {isLoggedIn ? (
-            <Button version="text" isPrimary={true} onClick={() => console.log('logout')}>
+            <Button version="text" isPrimary={true} onClick={handleLogout}>
               Logout
             </Button>
           ) : (

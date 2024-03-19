@@ -4,9 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LoginPage } from './pages/LoginAndRegister/LoginPage';
 import { RegisterPage } from './pages/LoginAndRegister/RegisterPage';
 import { MainLayout } from './layouts/mainLayout';
-import { PropertiesPage } from './pages/Properties/PropertiesPage';
+// import { PropertiesPage } from './pages/Properties/PropertiesPage';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import { PropertyDetailsPage } from './pages/Properties/PropertyDetailsPage';
 
 const router = createBrowserRouter([
   {
@@ -34,13 +35,13 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/properties',
-    element: <PropertiesPage />,
+    path: '/properties/:propertyID',
+    element: (
+      <MainLayout>
+        <PropertyDetailsPage />
+      </MainLayout>
+    ),
   },
-  // {
-  //   path: '/addProperty',
-  //   element: <AddProperty />,
-  // },
 ]);
 
 function App() {

@@ -21,6 +21,10 @@ export const homesApi = createApi({
         body: newProperty,
       }),
     }),
+
+    // getPropertyFromID: builder.query<IProperty, number>({
+    //   query: (id) => 
+    // })
   }),
 });
 
