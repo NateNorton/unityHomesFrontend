@@ -11,9 +11,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const {
     data: properties,
-    isFetching,
+    // isFetching,
     isSuccess,
-    error,
+    // error,
   } = useGetPropertiesFromLocationQuery(searchTerm, {
     skip: searchTerm === '',
   });

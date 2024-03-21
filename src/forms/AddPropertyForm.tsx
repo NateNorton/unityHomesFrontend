@@ -41,12 +41,13 @@ export const AddPropertyForm = () => {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true);
           // This is where I will make the POST request
-
+          console.log(values);
           resetForm();
           setSubmitting(false);
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+        {/* TODO: add this back in isSubmitting */}
+        {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
           <form onSubmit={handleSubmit} className="flex justify-between gap-x-10">
             {/* container for general info */}
             <div className="grid grid-cols-2 gap-4">
