@@ -15,12 +15,12 @@ export const TextInput = ({
   ...props
 }: ITextInputProps) => {
   return (
-    <div className="flex flex-col min-w-60 max-w-60">
+    <div className="flex flex-col">
       {label && <label className="text-sm mb-1 text-darkest">{label}</label>}
       <div className={`min-h-[48px] flex items-center ${iconPosition === 'right' ? 'flex-row-reverse' : ''}`}>
         {icon && <span className="p-2">{icon}</span>}
         <input
-          className={`border p-2 rounded focus:outline-none bg-lightest w-full ${typeof errorMessage === 'undefined' ? 'border-slateDark' : 'border-teracotta'} text-darkest`}
+          className={`border p-2 shadow-lg rounded-md focus:outline-none bg-antiqueWhite w-full ${typeof errorMessage === 'undefined' ? 'border-slateDark' : 'border-teracotta'} text-darkest`}
           {...props}
           disabled={state === 'disabled'}
         />
