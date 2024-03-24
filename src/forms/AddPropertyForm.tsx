@@ -147,6 +147,7 @@ export const AddPropertyForm = () => {
                 }
               />
             </div>
+            <button type="submit">Submit</button>
           </form>
         )}
       </Formik>

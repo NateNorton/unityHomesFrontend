@@ -14,6 +14,7 @@ import { Enquiries } from './pages/Enquiries/Enquiries';
 import { AddProperty } from './pages/AddProperty/AddProperty';
 import { SavedArticles } from './pages/savedArticles/SavedArticles';
 import { Chat } from './pages/Chat/Chat';
+import { ProtectedRoute } from './ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -51,49 +52,61 @@ const router = createBrowserRouter([
   {
     path: '/hub/settings',
     element: (
-      <HubLayout>
-        <SettingsPage />
-      </HubLayout>
+      <ProtectedRoute>
+        <HubLayout>
+          <SettingsPage />
+        </HubLayout>
+      </ProtectedRoute>
     ),
   },
   {
     path: '/hub/myproperties',
     element: (
-      <HubLayout>
-        <MyProperties />
-      </HubLayout>
+      <ProtectedRoute>
+        <HubLayout>
+          <MyProperties />
+        </HubLayout>
+      </ProtectedRoute>
     ),
   },
   {
     path: '/hub/enquiries',
     element: (
-      <HubLayout>
-        <Enquiries />
-      </HubLayout>
+      <ProtectedRoute>
+        <HubLayout>
+          <Enquiries />
+        </HubLayout>
+      </ProtectedRoute>
     ),
   },
   {
     path: '/hub/createproperty',
     element: (
-      <HubLayout>
-        <AddProperty />
-      </HubLayout>
+      <ProtectedRoute>
+        <HubLayout>
+          <AddProperty />
+        </HubLayout>
+      </ProtectedRoute>
     ),
   },
   {
     path: '/hub/savedarticles',
     element: (
-      <HubLayout>
-        <SavedArticles />
-      </HubLayout>
+      <ProtectedRoute>
+        <HubLayout>
+          <SavedArticles />
+        </HubLayout>
+      </ProtectedRoute>
     ),
   },
   {
     path: '/hub/chat',
     element: (
-      <HubLayout>
-        <Chat />
-      </HubLayout>
+      <ProtectedRoute>
+        <HubLayout>
+          <Chat />
+        </HubLayout>
+      </ProtectedRoute>
     ),
   },
 ]);
