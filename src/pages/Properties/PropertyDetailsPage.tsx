@@ -1,14 +1,11 @@
-// import { useParams } from 'react-router-dom';
-// import { AppDispatch } from '../../redux/store';
-// import { useDispatch } from 'react-redux';
+import { useGetPropertyFromIDQuery } from '../../redux/api/homesApi';
+import { PropertyDetails } from './PropertyDetails';
 
 export const PropertyDetailsPage = () => {
-  // const { propertyID } = useParams();
-  // const dispatch = useDispatch<AppDispatch>();
-
+  const { data: property } = useGetPropertyFromIDQuery(parseInt(location.pathname.split('/')[2]));
   return (
-    <div>
-      <h1 className="text-darkest">Property details page</h1>
+    <div className="text-darkest flex p-10 items-center justify-center">
+      {property && <PropertyDetails property={property} />}
     </div>
   );
 };

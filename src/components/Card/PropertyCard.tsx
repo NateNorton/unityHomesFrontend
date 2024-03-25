@@ -2,6 +2,7 @@ import { IProperty } from '../../types/Property.type';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useNavigate } from 'react-router-dom';
 
 export type Image = {
   URL: string;
@@ -22,8 +23,26 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property, images }) 
     arrows: false,
   };
 
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/properties/${property.id}`);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      handleCardClick();
+    }
+  };
+
   return (
-    <div className="flex flex-col md:flex-row bg-sageLight rounded-lg p-2 md:p-4 text-darkest space-x-4 space-y-8">
+    <div
+      className="flex flex-col md:flex-row bg-sageLight rounded-lg p-2 md:p-4 text-darkest space-x-4 space-y-8"
+      onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+    >
       {/* container for images section */}
       <div className="md:w-1/2 flex">
         {/* carousel container */}
@@ -50,34 +69,3 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({ property, images }) 
     </div>
   );
 };
-
-// const PropertyCard = ({ title, description, images }: PropertyCardProps) => {
-//   return (
-//     // <Card className="text-center">
-//     //   <Container>
-//     //     <Row>
-//     //       <Col md={6}>
-//     //         <Carousel>
-//     //           {images.map((image) => (
-//     //             <Carousel.Item key={image.URL}>
-//     //               <Image src={'https://picsum.photos/500/200'} rounded />
-//     //               <Carousel.Caption>
-//     //                 <p>{image.description}</p>
-//     //               </Carousel.Caption>
-//     //             </Carousel.Item>
-//     //           ))}
-//     //         </Carousel>
-//     //       </Col>
-//     //       <Col md={6}>
-//     //         <Card.Body>
-//     //           <Card.Title>{title}</Card.Title>
-//     //           <Card.Text>{description}</Card.Text>
-//     //         </Card.Body>
-//     //       </Col>
-//     //     </Row>
-//     //   </Container>
-//     // </Card>
-//   );
-// };
-
-// export default PropertyCard;

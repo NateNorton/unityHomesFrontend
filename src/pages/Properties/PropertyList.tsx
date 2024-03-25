@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropertyCard } from '../../components/Card/PropertyCard';
-import { IProperty } from '../../types/Property.type';
+import { RootState } from '../../redux/store';
+import { useSelector } from 'react-redux';
 
 const images = [
   {
@@ -41,15 +42,12 @@ const images = [
   },
 ];
 
-interface PropertyListProps {
-  properties: IProperty[];
-}
-
-export const PropertyList: React.FC<PropertyListProps> = ({ properties }) => {
+export const PropertyList: React.FC = () => {
+  const { currentProperties } = useSelector((state: RootState) => state.properties);
   return (
     <div className="pr-10 pl-10 pt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-      {properties.length === 0 && <h1>No properties found</h1>}
-      {properties.map((property, i) => (
+      {currentProperties.length === 0 && <h1>No properties found</h1>}
+      {currentProperties.map((property, i) => (
         <PropertyCard key={i} property={property} images={images} />
       ))}
     </div>

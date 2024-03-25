@@ -15,6 +15,7 @@ import { AddProperty } from './pages/AddProperty/AddProperty';
 import { SavedArticles } from './pages/savedArticles/SavedArticles';
 import { Chat } from './pages/Chat/Chat';
 import { ProtectedRoute } from './ProtectedRoute';
+import { PropertyList } from './pages/Properties/PropertyList';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
     element: (
       <MainLayout>
         <RegisterPage />
+      </MainLayout>
+    ),
+  },
+  {
+    path: '/properties',
+    element: (
+      <MainLayout>
+        <PropertyList />
       </MainLayout>
     ),
   },

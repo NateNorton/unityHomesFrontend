@@ -5,9 +5,14 @@ import { AppDispatch, RootState } from '../../redux/store';
 import { logoutUser } from '../../redux/features/auth/authSlice';
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Properties', href: '#' },
-  { name: 'Search', href: '#' },
+  { name: 'Home', href: '/', showLoggedOut: true },
+  { name: 'Search', href: '#', showLoggedOut: true },
+  { name: 'Settings', href: '/hub/settings', showLoggedOut: false },
+  { name: 'My Properties', href: '/hub/myproperties', showLoggedOut: false },
+  { name: 'Enquiries', href: '/hub/enquiries', showLoggedOut: false },
+  { name: 'Add Property', href: '/hub/createproperty', showLoggedOut: false },
+  { name: 'Saved Articles', href: '/hub/savedarticles', showLoggedOut: false },
+  { name: 'Chat', href: '/hub/chat', showLoggedOut: false },
 ];
 
 export const MainNavbar = () => {
@@ -34,11 +39,15 @@ export const MainNavbar = () => {
 
         {/* link container */}
         <div className="flex space-x-2 lg:space-x-6">
-          {navigation.map((item, index) => (
-            <Button key={index} version="text" isPrimary={true} onClick={() => handleNavigation(item.href)}>
-              {item.name}
-            </Button>
-          ))}
+          {navigation.map(
+            (item, index) =>
+              // show all buttons if logged in, if not logged in show only the buttons with showLoggedOut: true
+              (isLoggedIn || item.showLoggedOut) && (
+                <Button key={index} version="text" isPrimary={true} onClick={() => handleNavigation(item.href)}>
+                  {item.name}
+                </Button>
+              ),
+          )}
         </div>
 
         {/* login / logout container */}

@@ -3,6 +3,8 @@ import { EditPropertyType, type IProperty } from '../../types/Property.type';
 import type PropertyType from '../../types/PropertyType.type';
 import { RootState } from '../store';
 import { ArticleType } from '../../types/Article.type';
+import { ChatParticipant } from '../../types/Chat.type';
+import { UserDetails, UserUpdateType } from '../../types/User.type';
 
 export const homesApi = createApi({
   reducerPath: 'homesApi',
@@ -31,7 +33,7 @@ export const homesApi = createApi({
     addNewProperty: builder.mutation<IProperty, IProperty>({
       query: (newProperty) => ({
         url: 'Properties',
-        methos: 'POST',
+        method: 'POST',
         body: newProperty,
       }),
     }),
@@ -89,6 +91,11 @@ export const homesApi = createApi({
       }),
     }),
 
+    // get all chat participants
+    getChatParticipants: builder.query<ChatParticipant[], void>({
+      query: () => `Chat/participants`,
+    }),
+
     // Get single article
     getArticle: builder.query<ArticleType, number>({
       query: (id) => `Articles/${id}`,
@@ -99,10 +106,62 @@ export const homesApi = createApi({
       query: () => `Article`,
     }),
 
+    // get favourite properties
+    getFavouriteProperties: builder.query<IProperty[], void>({
+      query: () => `/user/favourites`,
+    }),
+
+    // add property to favourites
+    addPropertyToFavourites: builder.mutation<void, number>({
+      query: (propertyID) => ({
+        url: `user/favourites/${propertyID}`,
+        method: 'POST',
+      }),
+    }),
+
+    // delete from facourites
+    deleteFromFavourites: builder.mutation<void, number>({
+      query: (propertyID) => ({
+        url: `user/favourites/${propertyID}`,
+        method: 'DELETE',
+      }),
+    }),
+
+    // get user details
+    getUserDetails: builder.query<UserDetails, void>({
+      query: () => 'user/details',
+    }),
+
+    // edit user details
+    editUserDetails: builder.mutation<void, UserUpdateType>({
+      query: (data) => ({
+        url: 'user/update',
+        method: 'PUT',
+        body: data,
+      }),
+    }),
+
     // create property application
     // delete application
     // edit application
   }),
 });
 
-export const { useGetPropertiesFromLocationQuery, useGetPropertyTypesQuery } = homesApi;
+export const {
+  useGetPropertiesFromLocationQuery,
+  useGetPropertyTypesQuery,
+  useAddNewPropertyMutation,
+  useDeleteMessageMutation,
+  useDeletePropertyMutation,
+  useEditMessageMutation,
+  useEditPropertyMutation,
+  useGetAllArticlesQuery,
+  useGetArticleQuery,
+  useGetChatParticipantsQuery,
+  useGetPropertyFromIDQuery,
+  useGetFavouritePropertiesQuery,
+  useAddPropertyToFavouritesMutation,
+  useDeleteFromFavouritesMutation,
+  useEditUserDetailsMutation,
+  useGetUserDetailsQuery,
+} = homesApi;
